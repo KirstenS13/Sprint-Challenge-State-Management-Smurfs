@@ -18,7 +18,6 @@ export const store = createStore(reducer, applyMiddleware(thunk));
 class App extends Component {
   render() {
     console.log('store from App', store);
-
     return (
       <div className="App">
         <h1>SMURFS! 2.0 W/ Redux</h1>

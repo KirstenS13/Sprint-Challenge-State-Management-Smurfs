@@ -5,16 +5,23 @@ import Smurf from './Smurf';
 //import connect
 import { connect } from 'react-redux';
 
+//import getSmurfs action creator
+import { getSmurfs } from '../actions';
+
 const SmurfList = props => {
     console.log('props from SmurfList', props)
 
     return (
         <>
             <p>The Smurf List</p>
-            <button>Get The Smurfs</button>
+            <button onClick={() => props.getSmurfs()}>Get The Smurfs</button>
             {props.smurfs.map(smurf => {
                 return (
-                    <Smurf />
+                    <Smurf 
+                        name={smurf.name}
+                        age={smurf.age}
+                        height={smurf.height}
+                    />
                 )
             })}
         </>
@@ -25,6 +32,8 @@ const mapStateToProps = state => {
     return {
         smurfs: state.smurfs
     }
-}
+};
 
-export default connect(mapStateToProps, {})(SmurfList);
+const mapDispatchToProps = {getSmurfs};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SmurfList);
