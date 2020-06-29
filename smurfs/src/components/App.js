@@ -11,6 +11,7 @@ import { reducer } from '../reducers';
 
 //components
 import SmurfList from './SmurfList';
+import Form from './Form';
 
 //create store
 export const store = createStore(reducer, applyMiddleware(thunk));
@@ -25,6 +26,7 @@ class App extends Component {
         <div>Start inside of your `src/index.js` file!</div>
         <div>Have fun!</div>
         <SmurfList />
+        <Form />
       </div>
     );
   }
