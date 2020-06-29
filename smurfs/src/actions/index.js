@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const GET_SMURFS_START = "GET_SMURFS_START";
 export const GET_SMURFS_SUCCESS = "GET_SMURFS_SUCCESS";
+export const GET_SMURFS_FAILURE = "ADD_SMURFS_FAILURE";
 export const ADD_SMURF = "ADD_SMURF";
 
 export const getSmurfs = () => dispatch => {
@@ -15,6 +16,7 @@ export const getSmurfs = () => dispatch => {
         })
         .catch(err => {
             console.log("err from getSmurfs", err);
+            dispatch({type: GET_SMURFS_FAILURE, payload: err});
         })
 };
 
@@ -22,7 +24,7 @@ export const addSmurf = formState => dispatch => {
     console.log("addSmurf action creator");
     dispatch({type: ADD_SMURF, payload: formState});
     axios
-        .post()
+        .post(`http://localhost:3333/smurfs`, formState)
         .then(res => {
             console.log("res from addSmurf", res);
         })

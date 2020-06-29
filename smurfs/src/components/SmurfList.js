@@ -13,14 +13,15 @@ const SmurfList = props => {
 
     return (
         <>
-            <p>The Smurf List</p>
             <button onClick={() => props.getSmurfs()}>Get The Smurfs</button>
+            <h3>Home to {props.smurfs.length} smurfs!</h3>
             {props.smurfs.map(smurf => {
                 return (
                     <Smurf 
                         name={smurf.name}
                         age={smurf.age}
                         height={smurf.height}
+                        key={smurf.id}
                     />
                 )
             })}

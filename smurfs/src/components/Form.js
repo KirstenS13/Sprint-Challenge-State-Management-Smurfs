@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 
-const Form = () => {
+import { connect } from 'react-redux';
+
+import { addSmurf } from '../actions';
+
+const Form = props => {
     const [formState, setFormState] = useState({
-        name: null,
-        age: null,
-        height: null
+        name: "",
+        age: "",
+        height: ""
     });
 
     const changeHandler = e => {
@@ -16,17 +20,18 @@ const Form = () => {
 
     const submitForm = e => {
         e.preventDefault();
+        props.addSmurf(formState);
         setFormState({
-            name: null,
-            age: null,
-            height: null
-        })
+            name: "",
+            age: "",
+            height: ""
+        });
     }
 
     return (
         <>
-            <p>The Form</p>
-            <p>Add a Smurf to the Village</p>
+            <h3>A new smurf is moving into the village!</h3>
+            <h4>Tell us about them!</h4>
             <form onSubmit={submitForm}>
                 <label htmlFor="name">Name
                     <input 
@@ -65,4 +70,13 @@ const Form = () => {
     )
 }
 
-export default Form;
+const mapStateToProps = state => {
+    return {
+        smurfs: state.smurfs,
+        error: state.error
+    }
+}
+
+const mapDispatchToProps = {addSmurf};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Form);
